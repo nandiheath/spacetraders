@@ -5,13 +5,14 @@ import (
 	"time"
 
 	"github.com/nandiheath/spacetraders/internal/api"
+	"github.com/nandiheath/spacetraders/internal/core"
 	"github.com/nandiheath/spacetraders/internal/log"
 	"github.com/nandiheath/spacetraders/internal/utils"
 )
 
 type Runner struct {
 	Mine     Mine     `cmd:"" help:"start mining and sell "`
-	Contract Contract `cmd:"" help:"start doing the contract"`
+	Contract Contract `cmd:"" help:"automatically fulfill the contract"`
 }
 
 type Mine struct {
@@ -24,13 +25,12 @@ func (cmd *Mine) Run() error {
 	log.Logger().Infof("%s", ship)
 	client := utils.NewAPIClient()
 
-	req := client.FleetApi.GetMyShipCargo(ctx, ship)
-	r, _, err := req.Execute()
+	resp, err := client.GetMyShipCargoWithResponse(ctx, ship)
 	if err != nil {
 		return err
 	}
 
-	cargo := r.Data.Inventory
+	cargo := resp.JSON200.Data.Inventory
 	log.Logger().Infof("cargo: %+v\n", cargo)
 
 	// 10s interval
@@ -38,27 +38,29 @@ func (cmd *Mine) Run() error {
 	for {
 		select {
 		case <-t.C:
-			eReq := client.FleetApi.ExtractResources(ctx, ship)
-			extract, _, err := eReq.Execute()
+			extractResp, err := client.ExtractResourcesWithResponse(ctx, ship, api.ExtractResourcesJSONRequestBody{})
 			if err != nil {
 				log.Logger().Errorf("unable to extract: %+v\n", err)
 				continue
 			}
-			log.Logger().Infof("extracted %d [%s]", extract.Data.Extraction.Yield.Units, extract.Data.Extraction.Yield.Symbol)
+			extraction := extractResp.JSON201.Data.Extraction
+			log.Logger().Infof("extracted %d [%s]", extraction.Yield.Units, extraction.Yield.Symbol)
 
-			sellReq := client.FleetApi.SellCargo(ctx, ship).SellCargoRequest(api.SellCargoRequest{
-				Symbol: extract.Data.Extraction.Yield.Symbol,
-				Units:  extract.Data.Extraction.Yield.Units,
-			})
-
-			sold, _, err := sellReq.Execute()
+			sellResp, _ := client.SellCargoWithResponse(
+				ctx,
+				ship,
+				api.SellCargoJSONRequestBody{
+					Symbol: extraction.Yield.Symbol,
+					Units:  extraction.Yield.Units,
+				},
+			)
 			if err != nil {
 				log.Logger().Errorf("unable to sell: %+v\n", err)
 				continue
 			}
-			log.Logger().Infof("sold resources: %+v\n", sold.Data.Cargo.Units)
-			log.Logger().Infof("sleep for %d seconds to wait for next extract", extract.Data.Cooldown.RemainingSeconds)
-			t.Reset(time.Duration(extract.Data.Cooldown.RemainingSeconds) * time.Second)
+			log.Logger().Infof("sold resources: %+v\n", sellResp.JSON201.Data.Cargo.Units)
+			log.Logger().Infof("sleep for %d seconds to wait for next extract", extractResp.JSON201.Data.Cooldown.RemainingSeconds)
+			t.Reset(time.Duration(extractResp.JSON201.Data.Cooldown.RemainingSeconds) * time.Second)
 
 		}
 	}
@@ -71,8 +73,7 @@ type Contract struct {
 }
 
 func (cmd *Contract) Run() error {
-	ctx := context.Background()
-	ship := cmd.ShipSymbol
-
+	ml := core.NewMainLoop()
+	ml.StartContract(cmd.ShipSymbol, cmd.ContractID)
 	return nil
 }

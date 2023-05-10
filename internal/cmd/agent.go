@@ -17,11 +17,11 @@ type Info struct {
 
 func (cmd *Info) Run() error {
 	log.Logger().Info("Info Agent")
-	req := utils.NewAPIClient().AgentsApi.GetMyAgent(context.Background())
-	r, _, err := req.Execute()
+	resp, err := utils.NewAPIClient().GetMyAgentWithResponse(context.Background())
 	if err != nil {
 		return err
 	}
-	fmt.Printf("AccountId: %s\nSymbol: %s\nHeadquarters:%s \nCredits: %d\n", r.Data.AccountId, r.Data.Symbol, r.Data.Headquarters, r.Data.Credits)
+	fmt.Printf("AccountId: %s\nSymbol: %s\nHeadquarters:%s \nCredits: %d\n",
+		resp.JSON200.Data.AccountId, resp.JSON200.Data.Symbol, resp.JSON200.Data.Headquarters, resp.JSON200.Data.Credits)
 	return nil
 }

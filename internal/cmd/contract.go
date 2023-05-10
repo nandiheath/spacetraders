@@ -19,13 +19,12 @@ type List struct {
 
 func (cmd *List) Run() error {
 	ctx := context.Background()
-	req := utils.NewAPIClient().ContractsApi.GetContracts(ctx)
-	r, _, err := req.Execute()
+	resp, err := utils.NewAPIClient().GetContractsWithResponse(ctx, nil)
 	if err != nil {
 		return err
 	}
 	fmt.Printf("ID\tType\tFullfilled\tExpiration\n")
-	for _, c := range r.Data {
+	for _, c := range resp.JSON200.Data {
 		fmt.Printf("%s\t%s\t%v\t%s\n", c.Id, c.Type, c.Fulfilled, utils.FormatExpiration(c.Expiration))
 	}
 	return nil
@@ -37,12 +36,11 @@ type Show struct {
 
 func (cmd *Show) Run() error {
 	ctx := context.Background()
-	req := utils.NewAPIClient().ContractsApi.GetContract(ctx, cmd.ContractId)
-	r, _, err := req.Execute()
+	resp, err := utils.NewAPIClient().GetContractWithResponse(ctx, cmd.ContractId)
 	if err != nil {
 		return err
 	}
-	printContract(r.Data)
+	printContract(resp.JSON200.Data)
 
 	return nil
 }
@@ -54,7 +52,7 @@ func printContract(c api.Contract) {
 	fmt.Printf("Deadline: \t%s\n", utils.FormatExpiration(c.Terms.Deadline))
 	fmt.Printf("Payment: \t%d/%d\n", c.Terms.Payment.OnAccepted, c.Terms.Payment.OnFulfilled)
 	fmt.Printf("Deliver:\n")
-	for _, good := range c.Terms.Deliver {
+	for _, good := range *c.Terms.Deliver {
 		fmt.Printf("%s -> %s: \t%d/%d", good.TradeSymbol, good.DestinationSymbol, good.UnitsFulfilled, good.UnitsRequired)
 	}
 }
@@ -65,12 +63,11 @@ type Accept struct {
 
 func (cmd *Accept) Run() error {
 	ctx := context.Background()
-	req := utils.NewAPIClient().ContractsApi.AcceptContract(ctx, cmd.ContractId)
-	r, _, err := req.Execute()
+	resp, err := utils.NewAPIClient().AcceptContractWithResponse(ctx, cmd.ContractId)
 	if err != nil {
 		return err
 	}
 	fmt.Printf("contract accpeted.\n")
-	printContract(r.Data.Contract)
+	printContract(resp.JSON200.Data.Contract)
 	return nil
 }
