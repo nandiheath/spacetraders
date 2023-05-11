@@ -68,12 +68,12 @@ func (cmd *Mine) Run() error {
 }
 
 type Contract struct {
-	ShipSymbol string `short:"s"`
-	ContractID string `short:"c"`
+	ShipSymbol string `short:"s" required:""`
+	ContractID string `short:"c" required:""`
 }
 
 func (cmd *Contract) Run() error {
 	ml := core.NewMainLoop()
-	ml.StartContract(cmd.ShipSymbol, cmd.ContractID)
+	ml.Start(cmd.ShipSymbol, cmd.ContractID)
 	return nil
 }

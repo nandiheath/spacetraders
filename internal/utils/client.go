@@ -13,11 +13,13 @@ import (
 
 // NewAPIClient returns the APIClient with default configuration
 func NewAPIClient() *api.ClientWithResponses {
+	// TODO: add rate-limit handler here
 	c, _ := api.NewClientWithResponses("https://api.spacetraders.io/v2", func(client *api.Client) error {
 		client.RequestEditors = append(client.RequestEditors, func(ctx context.Context, req *http.Request) error {
 			req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", os.Getenv("ACCESS_TOKEN")))
 			return nil
 		})
+
 		return nil
 	})
 	return c
