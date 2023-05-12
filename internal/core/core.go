@@ -8,7 +8,7 @@ import (
 	"github.com/nandiheath/spacetraders/internal/utils"
 )
 
-const MinUnitsToDeliver = 30
+const MinUnitsToDeliver = 0.8
 
 type MainLoop struct {
 	client *api.ClientWithResponses
@@ -38,7 +38,7 @@ func (m *MainLoop) Start(shipSymbol string, contractID string) error {
 	defer close(e)
 	c <- &DetermineStateAction{BaseAction{
 		client: m.client,
-		state: state{
+		state: &state{
 			ship:     shipResp.JSON200.Data,
 			contract: contractResp.JSON200.Data,
 		},

@@ -4136,6 +4136,11 @@ func (r GetFactionsResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r GetFactionsResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetFactionResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4160,6 +4165,11 @@ func (r GetFactionResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r GetFactionResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetMyAgentResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4182,6 +4192,11 @@ func (r GetMyAgentResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r GetMyAgentResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type GetContractsResponse struct {
@@ -4209,6 +4224,11 @@ func (r GetContractsResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r GetContractsResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetContractResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4231,6 +4251,11 @@ func (r GetContractResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r GetContractResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type AcceptContractResponse struct {
@@ -4260,6 +4285,11 @@ func (r AcceptContractResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r AcceptContractResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type DeliverContractResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4285,6 +4315,11 @@ func (r DeliverContractResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r DeliverContractResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type FulfillContractResponse struct {
@@ -4314,6 +4349,11 @@ func (r FulfillContractResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r FulfillContractResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetMyShipsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4337,6 +4377,11 @@ func (r GetMyShipsResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r GetMyShipsResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type PurchaseShipResponse struct {
@@ -4369,6 +4414,11 @@ func (r PurchaseShipResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r PurchaseShipResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetMyShipResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4394,6 +4444,11 @@ func (r GetMyShipResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r GetMyShipResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetMyShipCargoResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4416,6 +4471,11 @@ func (r GetMyShipCargoResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r GetMyShipCargoResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type CreateChartResponse struct {
@@ -4448,6 +4508,11 @@ func (r CreateChartResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r CreateChartResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetShipCooldownResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4471,6 +4536,11 @@ func (r GetShipCooldownResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r GetShipCooldownResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type DockShipResponse struct {
@@ -4498,6 +4568,11 @@ func (r DockShipResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r DockShipResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type ExtractResourcesResponse struct {
@@ -4530,6 +4605,11 @@ func (r ExtractResourcesResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r ExtractResourcesResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type JettisonResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4554,6 +4634,11 @@ func (r JettisonResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r JettisonResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type JumpShipResponse struct {
@@ -4586,6 +4671,11 @@ func (r JumpShipResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r JumpShipResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetShipNavResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4611,6 +4701,11 @@ func (r GetShipNavResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r GetShipNavResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type PatchShipNavResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4634,6 +4729,11 @@ func (r PatchShipNavResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r PatchShipNavResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type NavigateShipResponse struct {
@@ -4666,6 +4766,11 @@ func (r NavigateShipResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r NavigateShipResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type OrbitShipResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4691,6 +4796,11 @@ func (r OrbitShipResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r OrbitShipResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type PurchaseCargoResponse struct {
@@ -4719,6 +4829,11 @@ func (r PurchaseCargoResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r PurchaseCargoResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type ShipRefineResponse struct {
@@ -4758,6 +4873,11 @@ func (r ShipRefineResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r ShipRefineResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type RefuelShipResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4785,6 +4905,11 @@ func (r RefuelShipResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r RefuelShipResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type CreateShipShipScanResponse struct {
@@ -4815,6 +4940,11 @@ func (r CreateShipShipScanResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r CreateShipShipScanResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type CreateShipSystemScanResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4841,6 +4971,11 @@ func (r CreateShipSystemScanResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r CreateShipSystemScanResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type CreateShipWaypointScanResponse struct {
@@ -4871,6 +5006,11 @@ func (r CreateShipWaypointScanResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r CreateShipWaypointScanResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type SellCargoResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4897,6 +5037,11 @@ func (r SellCargoResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r SellCargoResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type CreateSurveyResponse struct {
@@ -4927,6 +5072,11 @@ func (r CreateSurveyResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r CreateSurveyResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type TransferCargoResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -4951,6 +5101,11 @@ func (r TransferCargoResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r TransferCargoResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type WarpShipResponse struct {
@@ -4981,6 +5136,11 @@ func (r WarpShipResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r WarpShipResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type RegisterResponse struct {
@@ -5017,6 +5177,11 @@ func (r RegisterResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r RegisterResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetSystemsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -5042,6 +5207,11 @@ func (r GetSystemsResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r GetSystemsResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetSystemResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -5064,6 +5234,11 @@ func (r GetSystemResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r GetSystemResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type GetSystemWaypointsResponse struct {
@@ -5091,6 +5266,11 @@ func (r GetSystemWaypointsResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r GetSystemWaypointsResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetWaypointResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -5114,6 +5294,11 @@ func (r GetWaypointResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r GetWaypointResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 type GetJumpGateResponse struct {
@@ -5140,6 +5325,11 @@ func (r GetJumpGateResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r GetJumpGateResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetMarketResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -5164,6 +5354,11 @@ func (r GetMarketResponse) StatusCode() int {
 	return 0
 }
 
+// ResponseBody returns Body
+func (r GetMarketResponse) ResponseBody() []byte {
+	return r.Body
+}
+
 type GetShipyardResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -5186,6 +5381,11 @@ func (r GetShipyardResponse) StatusCode() int {
 		return r.HTTPResponse.StatusCode
 	}
 	return 0
+}
+
+// ResponseBody returns Body
+func (r GetShipyardResponse) ResponseBody() []byte {
+	return r.Body
 }
 
 // GetFactionsWithResponse request returning *GetFactionsResponse
