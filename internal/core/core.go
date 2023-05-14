@@ -54,3 +54,11 @@ func (m *MainLoop) Start(shipSymbol string, contractID string) error {
 	}
 	return nil
 }
+
+// problem
+// 1. actions do not share state?
+// 2. failed action should retry?
+// 3. ratelimit -> should handle with a single program
+
+// state machine
+// single queue for process requests
