@@ -27,7 +27,7 @@ trap clean_up EXIT
   cd "$temp_dir"
   git clone --depth=1 https://github.com/SpaceTradersAPI/api-docs
   cd "api-docs"
-  oapi-codegen -generate types,client -package api -templates "$ROOT_DIR/oapi-gen-templates/" -o "$ROOT_DIR/internal/api/api.go" "$ROOT_DIR/api_ref.json"
+  oapi-codegen -generate types,client -package api -templates "$ROOT_DIR/oapi-gen-templates/" -o "$ROOT_DIR/pkg/api/api.go" "$ROOT_DIR/api_ref.json"
 )
 
 

@@ -1,4 +1,4 @@
-package v2
+package core
 
 import (
 	"context"
@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/nandiheath/spacetraders/internal/api"
-	"github.com/nandiheath/spacetraders/internal/log"
+	"github.com/nandiheath/spacetraders/pkg/api"
+	"github.com/nandiheath/spacetraders/pkg/log"
 )
 
 const APIAddress = "https://api.spacetraders.io/v2"
@@ -129,7 +129,7 @@ func newResponseError(err error) *ResponseError {
 	}{Message: err.Error(), Code: 0}}
 }
 
-func tryParseError(resp APIResponse, err error) *ResponseError {
+func TryParseError(resp APIResponse, err error) *ResponseError {
 	if resp.StatusCode() != 200 && resp.StatusCode() != 201 {
 		errorResp := ResponseError{}
 		e := json.Unmarshal(resp.ResponseBody(), &errorResp)
